@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>LIST PAGER</title>
+		<script
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous">
+		</script>
+		<link href= "/css/style.css" rel ="stylesheet" type ="text/css" />
+<!-- 		<script src="/assets/todo-list.js"></script> -->
+
+	</head>
+
+<body>
+	<h1> testing </h1>
+	<p> TESSSSSSSSSSSSSST </p>
+
+	<div id="names">
+		<form>
+			<input type="text" name = "item" placeholder= "add new item..." required />
+			<button type="submit"> ADD Item</button>
+		</form>	
+		<br></br>
+		<ul>
+			<%for(i=0; i < names.length; i++){%>
+				<li><%=names[i].item%></li>
+			<%}%>
+		<ul>
+
+</body>
+
+
+</html>
