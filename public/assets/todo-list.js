@@ -13,7 +13,6 @@ $(document).ready(function(){
         url: '/todo',
         data: todo, //statOne,
         success: function(data){
-          //do something with the data via front-end framework
           location.reload();
         }
       });
