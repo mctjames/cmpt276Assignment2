@@ -47,9 +47,11 @@ var Tokimon = mongoose.model('Tokimon', tokiSchema);
 
 
 
+
 // homepage request
 app.get('/', (request, response) => {
-  response.sendFile(path.join(__dirname +'/public/home.html'));
+  //response.sendFile(path.join(__dirname +'/public/home.html'));
+  response.render('todo.ejs');
 });
 
 
