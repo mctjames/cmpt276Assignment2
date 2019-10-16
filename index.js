@@ -8,6 +8,10 @@ if(port == null || port == ""){
   port = 8000;
 }
 
+
+
+
+
 const path = require('path')
 app.set('view engine', 'ejs');
 
@@ -26,13 +30,14 @@ app.get('/', (request, response) => {
 });
 
 
-//more testing 
+
 
 var mongoose = require('mongoose');
 
 //connect to mongoose database
 mongoose.connect("mongodb+srv://james:password12345@cluster0-mfucr.mongodb.net/test?retryWrites=true&w=majority", 
   {useUnifiedTopology:true, useNewUrlParser:true, useCreateIndex: true});
+
 
 //create a schema - the blueprint for our data
 var tokiSchema = new mongoose.Schema({
