@@ -56,16 +56,16 @@ app.get('/', (request, response) => {
   });
 });
 
-//add tokimon page
-app.get('/todo', function(req, res){
-  //get data from mongodb and pass to view
-  //finds all the items in the collextion/database
-  // to get a specific item .find({item: 'specific identifier'})
-  Tokimon.find({}, function(err, data){
-    if(err) throw err;
-    res.render('todo', {tokimon: data});
-  });
-});
+// //add tokimon page
+// app.get('/todo', function(req, res){
+//   //get data from mongodb and pass to view
+//   //finds all the items in the collextion/database
+//   // to get a specific item .find({item: 'specific identifier'})
+//   Tokimon.find({}, function(err, data){
+//     if(err) throw err;
+//     res.render('todo', {tokimon: data});
+//   });
+// });
 
 //functionality for add tokimon page
 app.post('/todo', urlencodedParser, function(req,res){
