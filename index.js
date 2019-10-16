@@ -1,19 +1,13 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const path = require('path')
+app.set('view engine', 'ejs');
 
-//const port = process.env.port || 5000
 let port = process.env.PORT;
 if(port == null || port == ""){
   port = 8000;
 }
-
-
-
-
-
-const path = require('path')
-app.set('view engine', 'ejs');
 
 //body parser middleware
 app.use(bodyParser.json())
@@ -24,16 +18,9 @@ var urlencodedParser = bodyParser.urlencoded({extended:false});
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.get('/', (request, response) => {
-  response.sendFile(path.join(__dirname +'/public/home.html'));
-  //response.json({ info: 'Node.js, Express, and Postgres API' })
-});
 
-
-
-
+//database information
 var mongoose = require('mongoose');
-
 //connect to mongoose database
 mongoose.connect("mongodb+srv://james:password12345@cluster0-mfucr.mongodb.net/test?retryWrites=true&w=majority", 
   {useUnifiedTopology:true, useNewUrlParser:true, useCreateIndex: true});
@@ -53,11 +40,20 @@ var tokiSchema = new mongoose.Schema({
   height:Number,
   trainer:String,
 });
+
+
 // created a modeled based on the above schema
 var Tokimon = mongoose.model('Tokimon', tokiSchema);
 
 
 
+// homepage request
+app.get('/', (request, response) => {
+  response.sendFile(path.join(__dirname +'/public/home.html'));
+});
+
+
+//add tokimon page
 app.get('/todo', function(req, res){
   //get data from mongodb and pass to view
   //finds all the items in the collextion/database
@@ -68,7 +64,7 @@ app.get('/todo', function(req, res){
   });
 });
 
-
+//functionality for add tokimon page
 app.post('/todo', urlencodedParser, function(req,res){
   //get data from the view and add it to mongodb
   var newTodo = Tokimon(req.body).save(function(err, data){
@@ -78,7 +74,7 @@ app.post('/todo', urlencodedParser, function(req,res){
 });
 
 
-
+//functionality for deleting tokimon
 app.delete('/todo/:name', function(req,res){
   // delete the requested item from mongo
   Tokimon.find({name: req.params.name.replace(/\-/g, " ")}).remove(function(err, data){
